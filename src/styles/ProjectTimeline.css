@@ -1,0 +1,171 @@
+/* General Project Timeline Container */
+.project-timeline-container {
+  padding-top: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  width: 100%;
+  height: auto;
+  padding: 100px 120px;
+  transform: none;
+  transition: none;
+}
+
+/* Glowing Green Line */
+.timeline-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background-color: #00ff00;
+  box-shadow: 0 0 25px rgba(0, 255, 0, 0.8), 0 0 50px rgba(0, 255, 0, 0.6);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+/* Container for the Projects */
+.timeline-items {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+/* Individual Timeline Item */
+.timeline-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin: 0 -180px;
+  width: 300px;
+  text-align: center;
+}
+
+/* Timeline Content */
+.timeline-content {
+  width: 100%;
+  text-align: center;
+  padding: 30px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 20px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+  z-index: 2;
+  border-style: solid;
+  border-color: #00ff00;
+  position: relative;
+}
+
+/* Title Styling */
+.timeline-content h3 {
+  color: #00ff00;
+  font-size: 28px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-style: italic;
+}
+
+/* Description Styling */
+.timeline-content p {
+  color: #fff;
+  font-size: 18px;
+  line-height: 2;
+}
+
+/* Timeline Image Container */
+.timeline-image-container {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 25px;
+}
+
+.timeline-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Overlay Effect */
+.timeline-image-container::after {
+  content: "View";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #00ff00;
+  font-size: 28px;
+  font-weight: bold;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.timeline-image-container:hover .timeline-image {
+  transform: scale(1.08);
+  filter: brightness(70%);
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.8);
+}
+
+.timeline-image-container:hover::after {
+  opacity: 1;
+}
+
+/* Icon Styling */
+.timeline-icon-container {
+  margin-top: 60px; 
+}
+
+.timeline-icon {
+  color: #00ff00;
+  font-size: 36px; 
+  transition: transform 0.3s ease;
+}
+
+.timeline-icon:hover {
+  transform: scale(1.2);
+}
+
+/* Media Queries for Smaller Screens */
+@media (max-width: 768px) {
+  .project-timeline-container {
+    padding: 0px;
+  }
+
+  .timeline-items {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .timeline-item {
+    width: 70%;
+    margin-bottom: 50px;
+  }
+
+  .timeline-content h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .timeline-content p {
+    font-size: 16px;
+  }
+
+  .timeline-image-container {
+    height: 220px;
+  }
+
+  .timeline-icon {
+    font-size: 28px;
+  }
+}

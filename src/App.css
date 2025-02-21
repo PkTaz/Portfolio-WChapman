@@ -1,0 +1,127 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.mobile-image-container {
+    display: none;
+    text-align: center; /* Center the image horizontally */
+}
+
+.mobile-image {
+    z-index: 10000; /* Ensure the image has the highest priority on the z-index */
+    position: relative; /* Ensure the image is positioned correctly */
+}
+
+.next-button {
+    position: fixed;
+    right: 20px;
+    bottom: 50%;
+    background: linear-gradient(135deg, #00ff4a, #009933); /* Gradient glow effect */
+    border: none;
+    color: white;
+    font-size: 24px;
+    padding: 15px 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 
+        background 0.3s ease, 
+        transform 0.2s ease, 
+        box-shadow 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 255, 74, 0.8), 
+                0 0 30px rgba(0, 255, 74, 0.5), 
+                inset 0 0 5px rgba(255, 255, 255, 0.2);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    
+    /* Soft transparency for a glassy effect */
+    backdrop-filter: blur(8px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Hover Effect */
+.next-button:hover {
+    background: linear-gradient(135deg, #00cc3a, #007722); /* Darker neon effect */
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0 0 25px rgba(0, 255, 74, 1), 
+                0 0 50px rgba(0, 255, 74, 0.8), 
+                inset 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+/* Click Effect */
+.next-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 10px rgba(0, 255, 74, 0.8);
+}
+
+/* Add a pulsing glow animation */
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 15px rgba(0, 255, 74, 0.8), 0 0 30px rgba(0, 255, 74, 0.5); }
+    50% { box-shadow: 0 0 25px rgba(0, 255, 74, 1), 0 0 50px rgba(0, 255, 74, 0.8); }
+    100% { box-shadow: 0 0 15px rgba(0, 255, 74, 0.8), 0 0 30px rgba(0, 255, 74, 0.5); }
+}
+
+.next-button {
+    animation: pulseGlow 2s infinite alternate ease-in-out;
+}
+
+@media (max-width: 768px) { 
+
+    .next-button {
+        display: none;
+    }
+    .mobile-image-container {
+        display: block;
+        margin-top: 20px;
+    }
+
+    .mobile-image {
+        width: 20vh; /* Adjust image size */
+        height: 20vh;
+        border-radius: 50%;
+        border: 2px solid #00ff4a; /* Neon green border */
+        transition: transform 0.3s ease;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
+
+/* Media query for iPhone XR size (414 x 896) */
+@media (max-width: 414px) {
+    .next-button {
+        font-size: 18px;  /* Smaller font size for the button */
+        padding: 10px 15px; 
+        margin-bottom: 15px;
+        right: 40px;  /* Push the button away from the right */
+    }
+
+    .mobile-image-container {
+        display: block;
+        margin-top: 20px;
+        height: auto;
+        width: auto;
+    }
+
+}
+/* Media query for iPhone 14 Pro Max size (430 x 932) and smaller */
+@media (max-width: 430px) {
+    .mobile-image-container {
+        display: block;
+        margin-top: 20px;
+    }
+
+    .mobile-image {
+        width: 28vh; /* Adjust image size */
+        height: 28vh;
+        border-radius: 50%;
+        border: 2px solid #00ff4a; /* Neon green border */
+        transition: transform 0.3s ease;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

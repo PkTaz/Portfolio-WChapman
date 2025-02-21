@@ -1,0 +1,242 @@
+.card {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;  
+  border: 1px solid #00ff4a;
+  border-radius: 8px;  
+  box-shadow: 0 6px 12px rgba(0, 255, 74, 0.848);
+  background-color: rgba(52, 51, 51, 0.8);
+  max-width: 900px;  
+  margin: 100px auto;  
+  margin-left: 60vh;  
+  position: relative;  
+}
+
+/* Left side of the card */
+.card-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Name styling */
+.card-name {
+  font-size: 2.5rem;  /* Increased font size */
+  font-weight: 700;
+  margin: 0;
+  color: #ffffff;
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6);
+  filter: drop-shadow(-20px 15px 6px rgba(0, 0, 0, 0.4));
+}
+
+.title {
+  color: grey;
+  text-decoration: underline;
+  text-decoration-color: #00ff4a;
+  font-size: 1.4rem;  /* Increased title font size */
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6);
+  filter: drop-shadow(-20px 15px 6px rgba(0, 0, 0, 0.4));
+}
+
+/* Location styling */
+.location {
+  font-size: 1.5rem;  
+  color: #969494;
+  margin-top: 12px;
+}
+
+/* Right side of the card (social icons) */
+.card-right {
+  position: absolute;  
+  top: 25px;  
+  right: 25px;  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;  
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6);
+  filter: drop-shadow(-10px 10px 6px rgba(0, 0, 0, 0.4));
+}
+
+/* Social icons */
+.social-icon {
+  width: 7vh;  
+  height: 7vh; 
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.social-icon-gh {
+  width: 10vh;  
+  height: 10vh;  
+  margin-right: -2vh;  
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.social-icon-gh:hover {
+  transform: scale(1.1);  
+}
+
+.social-icon:hover {
+  transform: scale(1.1);  
+}
+
+.bio {
+  margin-top: 2%;
+  color: white;
+  font-size: 1.2rem;  
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6);
+  filter: drop-shadow(-20px 15px 6px rgba(0, 0, 0, 0.4));
+}
+
+/* CSS for Certifications */
+.certifications {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 55px;
+  margin-top: 20px;
+  flex-wrap: nowrap;
+}
+
+.cert-image {
+  width: 180px;
+  height: auto;
+  transition: transform 0.3s ease-in-out;
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6);
+  filter: drop-shadow(-20px 15px 6px rgba(0, 0, 0, 0.4));
+}
+
+.cert-image:hover {
+  transform: scale(1.1);
+}
+
+
+
+@media (max-width: 768px) {
+  .card {
+    flex-direction: column;  
+    padding: 25px;  
+    max-width: 80%;  
+    margin: 20px auto;  
+  }
+
+  /* Left side of the card */
+  .card-left {
+    margin-bottom: 20px;  
+  }
+
+  /* Name styling */
+  .card-name {
+    font-size: 2rem;  
+  }
+
+  .title {
+    font-size: 1.4rem;  
+  }
+
+  /* Location styling */
+  .location {
+    font-size: 1.3rem;  
+  }
+
+  /* Right side of the card (social icons) */
+  .card-right {
+    position: relative;  
+    top: 0;
+    right: 0;
+    flex-direction: row;
+    justify-content: center;
+    gap: 15px;  
+  }
+
+  /* Social icons */
+  .social-icon {
+    width: 6vh; 
+    height: 6vh; 
+  }
+
+  .social-icon-gh {
+    width: 8vh; 
+    height: 8vh;  
+    margin-right: 0;  
+  }
+
+  .bio {
+    font-size: 1.1rem; 
+    margin-top: 12px;  
+  }
+
+  .certifications {
+      flex-direction: flex; 
+      gap: 20px; 
+      margin-top: 10px;
+    }
+  
+  .cert-image {
+      width: 80px; 
+      height: auto; 
+    }
+}
+
+@media (max-width: 414px) {
+  .certifications {
+    flex-direction: flex; 
+    gap: 20px; 
+    margin-top: 10px; 
+  }
+
+  .cert-image {
+    width: 75px; 
+    height: auto; 
+  }
+
+  .card {
+    padding: 20px; 
+    margin: 20px auto; 
+  }
+
+  .card-left {
+    margin-bottom: 10px;
+  }
+
+  .card-name {
+    font-size: 1.8rem; 
+  }
+
+  .title {
+    font-size: 1.2rem; 
+  }
+
+  .location {
+    font-size: 1.2rem; 
+  }
+
+  .card-right {
+    position: relative; 
+    top: 0;
+    right: 0;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px; 
+  }
+
+  .social-icon {
+    width: 5vh; 
+    height: 5vh;
+  }
+
+  .social-icon-gh {
+    width: 7vh; 
+    height: 7vh;
+    margin-right: 0;
+  }
+
+  .bio {
+    font-size: 1rem; 
+    margin-top: 10px;
+  }
+}

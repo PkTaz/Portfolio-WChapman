@@ -1,0 +1,36 @@
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%; /* Initial height for the particles container */
+    top: 0;
+    left: 0;
+    background-color: #000000;
+    z-index: 0;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+  
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+  }
+  
+  .section {
+    position: relative;
+    height: 100vh; 
+    z-index: 1;
+  }
+  
+  .section:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200%; 
+    background-color: transparent;
+    z-index: -1;
+  }
+  

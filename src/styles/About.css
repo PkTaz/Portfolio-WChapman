@@ -1,0 +1,199 @@
+/* About Container */
+.about-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-top: 2rem;
+  padding: 1rem;
+  position: relative;
+  z-index: 10;
+  margin-left: 25%;
+  max-width: 1200px;
+  padding-bottom: 150px;
+}
+
+/* Header for About Me Section */
+.about-container h2 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #ecf0f1;
+  margin-bottom: 2rem;
+  text-align: center;
+  margin: auto;
+}
+
+/* About Section */
+.about-section {
+  margin-top: 2rem;
+  padding: 2rem;
+  background-color: #131516;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 10;
+}
+
+/* Header for Each About Section */
+.about-section h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ecf0f1;
+  margin-bottom: 1rem;
+}
+
+/* Paragraph Styling */
+.about-section p {
+  font-size: 1rem;
+  color: #bdc3c7;
+  line-height: 1.6;
+}
+
+.soft-skills-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 items per row */
+  gap: 50px;
+  width: 100%;
+  max-width: 1200px;
+  justify-items: center; /* Centers items in each grid cell */
+  position: relative;
+  z-index: 10;
+  transform: translate(-1%);
+}
+
+/* Soft Skills Card Styling */
+.soft-skills-card {
+  background-color: #131516;
+  padding: 15px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.soft-skills-card:hover {
+  transform: scale(1.05);
+  background-color: #5b8458;
+}
+
+.soft-skills-card h3 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #ecf0f1;
+  margin-top: 15px;
+}
+
+.soft-skills-card p {
+  font-size: 1rem;
+  color: #bdc3c7;
+  margin-top: 10px;
+}
+
+/* Icons for Soft Skills */
+.soft-skill-icon {
+  font-size: 3rem;
+  color: #ecf0f1;
+}
+
+
+
+/* Mobile Responsiveness for iPad size (768 x 1024) */
+@media (max-width: 768px) {
+  .about-container {
+    margin: auto;
+    max-width: 100%; 
+    padding: 1rem;
+    max-width: 100%; 
+  }
+
+  .about-container h2 {
+    font-size: 2rem;
+    margin: 0 auto 1rem auto; /* Center the header and adjust margin */
+  }
+
+  .about-section {
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+
+  .about-section h3 {
+    font-size: 1.5rem;
+  }
+
+  .about-section p {
+    font-size: 0.9rem;
+  }
+
+  .soft-skills-container {
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 0px;
+    width: 80%; 
+  }
+
+  .soft-skills-card {
+    padding: 10px;
+    margin-top: 10px;
+    width: 80%; 
+  }
+
+  .soft-skills-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .soft-skills-card p {
+    font-size: 0.8rem;
+  }
+
+  .soft-skill-icon {
+    font-size: 2rem;
+  }
+}
+/* Mobile Responsiveness for iPhone XR size (414 x 896) */
+@media (max-width: 414px) {
+  .about-container {
+    margin: auto;
+    max-width: 100%; 
+  }
+
+  .about-container h2 {
+    font-size: 2rem;
+    margin: 0 auto 1rem auto; /* Center the header and adjust margin */
+  }
+
+  .about-section {
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+
+  .about-section h3 {
+    font-size: 1.5rem;
+  }
+
+  .about-section p {
+    font-size: 0.9rem;
+  }
+
+  .soft-skills-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 items per row */
+    gap: 0px;
+    width: 80%; 
+  }
+
+  .soft-skills-card {
+    padding: 10px;
+    margin-top: 10px;
+    width: 80%; 
+  }
+
+  .soft-skills-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .soft-skills-card p {
+    font-size: 0.8rem;
+  }
+
+  .soft-skill-icon {
+    font-size: 2rem;
+  }
+}
