@@ -1,7 +1,7 @@
 # Portfolio-WChapman
 Portfolio-WChapman 🚀 A responsive and interactive personal portfolio built with React, featuring dynamic API-driven quotes and deployed on Netlify.
 
-#🔹 Features:
+# 🔹 Features:
 
 **Modern UI/UX** – Clean, professional design showcasing projects and skills.
 
@@ -11,6 +11,6 @@ Portfolio-WChapman 🚀 A responsive and interactive personal portfolio built wi
 
 **Fast & Secure Hosting** – Deployed on Netlify for seamless performance.
 
-#🔧 Tech Stack:
+# 🔧 Tech Stack:
 
 **✅ React | ✅ API Integration | ✅ Netlify | ✅ JavaScript | ✅ CSS | ✅ VSCode**
