@@ -1,184 +1,314 @@
-.header {
-    font-family: "Geo", serif;
-    width: 100%;
-    padding: 1rem 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 10;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 2rem;
-    padding-right: 2rem;
+/* A24-Inspired Futuristic Header */
+.futuristic-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 1000;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.futuristic-header.scrolled {
+  height: 70px;
+  backdrop-filter: blur(20px);
+}
+
+.header-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 255, 74, 0.15);
+  z-index: -1;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.futuristic-header.scrolled .header-backdrop {
+  background-color: rgba(5, 5, 5, 0.85);
+  border-bottom-color: rgba(0, 255, 74, 0.3);
 }
 
 .header-content {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1400px;
+  width: 90%;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 1rem;
 }
 
-.name {
-    font-size: 42px;
-    color: white;
-    font-weight: bold;
-    margin: 0;
-    position: absolute;
-    right: 100px;
-    transition: color 0.3s, transform 0.3s;
-    text-decoration: none;
-    font-family: sans-serif;
-    font-style: italic;
+/* Header Left Section */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
 
-.name:hover {
-    color: #00ff4a;
-    transform: scale(1.2);
+/* Logo */
+.logo {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.navbar {
-    margin-left: 10vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
+.logo-border {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(0, 255, 74, 0.5);
+  border-radius: 2px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.nav-list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
+.logo:hover .logo-border {
+  border-color: rgba(0, 255, 74, 0.9);
+  box-shadow: 0 0 15px rgba(0, 255, 74, 0.3);
 }
 
-.nav-item {
-    margin: 0 25px;
-    position: relative; 
+.logo-text {
+  font-family: 'Courier New', monospace;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--light-text);
+  letter-spacing: -0.05em;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.nav-item:hover {
-    transform: scale(1.2);
+.logo:hover .logo-text {
+  color: #00ff4a;
+  text-shadow: 0 0 10px rgba(0, 255, 74, 0.5);
 }
 
-.nav-item {
-    font-size: 3vh;
-    color: white;
-    position: relative;
-    cursor: pointer;
-    transition: transform 0.3s;
+/* Status indicators */
+.header-status {
+  display: flex;
+  gap: 1.5rem;
 }
 
-.nav-item:hover {
-    transform: scale(1.1);
+.status-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
 }
 
-.nav-item.active span {
-    color: #00ff4a;
+.status-label {
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.nav-item.active::after {
-    content: "";
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background-color: #00ff4a;
-    transform: scaleX(1);
+.status-value {
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  color: #00ff4a;
+  letter-spacing: 0.05em;
 }
 
-.nav-item a {
-    color: white;
-    text-decoration: none;
-    font-size: 24px;
-    font-weight: bold;
-    transition: color 0.3s;
-    position: relative;
+/* Futuristic Navigation */
+.futuristic-nav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.nav-item a:hover {
-    color: #00ff4a; 
+.nav-track {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
 }
 
-.nav-item a::after {
-    content: ""; /* Creates the underline effect */
-    position: absolute;
-    bottom: -5px; /* Adjust the position of the underline */
-    left: 25%; /* Starts the underline from 25% of the width */
-    width: 50%; /* The underline will cover 50% of the text width */
-    height: 3px; /* Height of the underline */
-    background-color: #00ff4a; /* Green color for the underline */
-    transform: scaleX(0); /* Initially, no underline */
-    transform-origin: center; /* Make sure the scale starts from the center */
-    transition: transform 0.3s ease-in-out; /* Smooth transition */
+.nav-node {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.nav-item a:hover::after {
-    transform: scaleX(1); /* On hover, the underline grows */
+.node-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-body {
-    margin-top: 80px;
+.nav-node:hover .node-indicator {
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
 }
 
-/* Media query for mobile screens */
+.nav-node.active .node-indicator {
+  background-color: #00ff4a;
+  box-shadow: 0 0 10px rgba(0, 255, 74, 0.6);
+}
+
+.node-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-node:hover .node-label {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.nav-node.active .node-label {
+  color: #00ff4a;
+}
+
+.node-connector {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.connector-line {
+  width: 20px;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-node:hover .connector-line,
+.nav-node.active .connector-line {
+  background-color: rgba(0, 255, 74, 0.7);
+}
+
+/* Home Button */
+.home-button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: transparent;
+  color: var(--light-text);
+  border: 1px solid rgba(0, 255, 74, 0.4);
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(0, 255, 74, 0) 0%,
+    rgba(0, 255, 74, 0.1) 50%,
+    rgba(0, 255, 74, 0) 100%
+  );
+  transform: translateX(-100%);
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.home-button:hover {
+  border-color: rgba(0, 255, 74, 0.9);
+  color: #00ff4a;
+}
+
+.home-button:hover::before {
+  transform: translateX(100%);
+}
+
+.home-icon {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.button-label {
+  font-family: 'Instrument Sans', sans-serif;
+}
+
+.chevron-icon {
+  font-size: 0.7rem;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.home-button:hover .chevron-icon {
+  transform: translateX(3px);
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .header-status {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
-  .header {
-    max-width: 80%;
+  .futuristic-header {
+    display: none;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
+  
+  .header-left {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .futuristic-nav {
+    position: relative;
+    left: auto;
+    transform: none;
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+  
+  .nav-track {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .home-button {
+    margin: 0.5rem 0;
+  }
 }
 
-    .name {
-      display: none;
-    }
-
-    .navbar {
-        margin: auto;
-        transform: translate(-5%);
-        justify-content: center;
-        align-items: center;
-    }
-
-    .nav-list {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-    }
-
-    .nav-item {
-      font-size: 1.5rem;
-        margin: 0 10px; 
-    }
-
-    .nav-item a {
-        font-size: 18px;
-    }
-}
-
-/* Media query for iPhone XR size (414 x 896) */
-@media (max-width: 414px) {
-    .header {
-        max-width: 80%;
-    }
-
-    .name {
-        display: none;
-    }
-
-    .nav-list {
-      justify-content: center;
-    }
-
-    .nav-item {
-        font-size: 2vh;  
-        margin: 0 15px;  
-    }
-
-    .nav-item a {
-        font-size: 20px;  
-    }
+@media (max-width: 480px) {
+  .nav-node {
+    padding: 0.4rem 0.5rem;
+    gap: 0.5rem;
+  }
+  
+  .node-label {
+    font-size: 0.8rem;
+  }
+  
+  .connector-line {
+    width: 10px;
+  }
 }

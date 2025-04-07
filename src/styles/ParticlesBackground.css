@@ -1,36 +1,373 @@
-#particles-js {
-    position: fixed;
-    width: 100%;
-    height: 100%; /* Initial height for the particles container */
-    top: 0;
-    left: 0;
-    background-color: #000000;
-    z-index: 0;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+/* A24-inspired cinematic background */
+#a24-background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #0a0a0a; /* Slightly darker than pure black */
+  z-index: 0;
+  background-image: linear-gradient(
+    170deg, 
+    rgba(15, 15, 15, 1) 0%, 
+    rgba(15, 15, 15, 0.9) 40%,
+    rgba(25, 25, 25, 0.85) 60%, 
+    rgba(15, 15, 15, 0.9) 100%
+  );
+  background-size: 400% 400%;
+  transition: background-position 0.8s ease-out;
+  overflow: hidden;
+}
+
+/* Film grain overlay effect */
+.noise-overlay {
+  position: absolute;
+  top: -500%;
+  left: -500%;
+  right: -500%;
+  bottom: -500%;
+  width: 1000%;
+  height: 1000%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+  opacity: 0.07;
+  animation: noise 0.5s infinite;
+  pointer-events: none;
+}
+
+@keyframes noise {
+  0%, 100% {
+    transform: translate(0, 0);
   }
+  10% {
+    transform: translate(-1%, -1%);
+  }
+  20% {
+    transform: translate(-1%, 1%);
+  }
+  30% {
+    transform: translate(1%, -1%);
+  }
+  40% {
+    transform: translate(1%, 1%);
+  }
+  50% {
+    transform: translate(-1%, 0%);
+  }
+  60% {
+    transform: translate(1%, 0%);
+  }
+  70% {
+    transform: translate(0%, 1%);
+  }
+  80% {
+    transform: translate(0%, -1%);
+  }
+  90% {
+    transform: translate(1%, -1%);
+  }
+}
+
+/* Horizontal subtle lines - like film scratches */
+.horizontal-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.horizontal-line {
+  position: absolute;
+  height: 1px;
+  background-color: #fff;
+  transform: translateY(-50%);
+}
+
+/* Letterbox bars for cinematic feel */
+.letterbox-bar {
+  position: absolute;
+  width: 100%;
+  height: 0;
+  background-color: #000;
+  z-index: 2;
+  opacity: 0;
+  transition: height 0.7s ease, opacity 0.7s ease;
+}
+
+.top-bar {
+  top: 0;
+}
+
+.bottom-bar {
+  bottom: 0;
+}
+
+/* Only show letterbox in cinema mode */
+.cinema-mode .letterbox-bar {
+  height: 5vh;
+  opacity: 1;
+}
+
+/* Vignette effect */
+.vignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+}
+
+/* Subtle green accent for A24 aesthetic */
+.a24-accent {
+  position: absolute;
+  width: 1px;
+  height: 20vh;
+  background-color: rgba(74, 255, 145, 0.2);
+  left: 5vw;
+  top: 40vh;
+  transform-origin: top;
+  animation: pulsate 4s infinite alternate ease-in-out;
+}
+
+@keyframes pulsate {
+  0% {
+    opacity: 0.1;
+    height: 15vh;
+  }
+  100% {
+    opacity: 0.3;
+    height: 25vh;
+  }
+
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* Adding subtle blend modes for better integration with content */
+#a24-background::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+  mix-blend-mode: overlay;
+}
+
+/* Apple x A24 Hybrid Background */
+#hybrid-background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  /* Always use dark mode colors for consistency */
+  background: linear-gradient(145deg, #1a1a1e 0%, #0f0f12 100%);
+  z-index: 0;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  #hybrid-background {
+    /* A slightly moodier dark gradient */
+    background: linear-gradient(145deg, #1a1a1e 0%, #0f0f12 100%);
+  }
+}
+
+/* Noise Overlay (A24 Texture) */
+.noise-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Use a subtle SVG noise pattern */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.05'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.2; /* Very subtle */
+  z-index: 1; /* Above gradient, below blurs */
+  pointer-events: none;
+}
+
+/* Blur Elements Container (Apple Style) */
+.blur-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2; /* Above noise */
+  pointer-events: none;
+}
+
+.blur-element {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.6;
+  transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+/* Specific blur colors for dark theme */
+#blur-1 { background-color: rgba(0, 122, 255, 0.1); } /* Darker blue */
+#blur-2 { background-color: rgba(74, 255, 145, 0.08); } /* Darker green */
+#blur-3 { background-color: rgba(255, 55, 95, 0.07); } /* Darker pink */
+
+/* Accent Motes Container (A24 Detail) */
+.motes-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 3; /* Above blurs */
+  pointer-events: none;
+}
+
+.accent-mote {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(74, 255, 145, 0.4); /* A24 Green */
+  opacity: 0;
+  transition: transform 1s cubic-bezier(0.3, 1, 0.7, 1);
+  animation: moteFadePulse 20s infinite ease-in-out;
+  will-change: transform, opacity;
+}
+
+@keyframes moteFadePulse {
+  0%, 100% { opacity: 0; transform: scale(0.8); }
+  10%, 30% { opacity: 0.6; transform: scale(1); }
+  50%, 70% { opacity: 0.2; transform: scale(0.9); }
+  90% { opacity: 0.4; transform: scale(1.1); }
+}
+
+/* Comet Elements (Renamed to Shooting Stars) */
+.comets-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 4; /* Above motes */
+  pointer-events: none;
+  overflow: hidden; /* Prevent tails going too far */
+}
+
+.comet { /* Represents shooting star */
+  position: absolute;
+  width: 2px; /* Head size */
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  /* Apply parallax separately */
+  /* The transform here is ONLY for parallax, applied by JS */
+  transition: transform 1.5s cubic-bezier(0.3, 1, 0.7, 1); 
+  /* Animation for shooting motion and fade - Slower duration */
+  animation: shoot 8s infinite linear;
+  /* Start animation at different times */
+  animation-delay: var(--delay, 0s);
+  will-change: transform, opacity;
+  /* Ensure it starts off-screen right */
+  left: 100%; 
+}
+
+.comet::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  /* Position tail directly behind head, extending right */
+  left: 2px; 
+  width: 60px; /* Tail length */
+  height: 1px; /* Thinner tail */
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.4), transparent);
+  transform: translateY(-50%);
+  border-radius: 1px;
+}
+
+/* Updated Shooting Animation - Straight Right to Left, Slower, Fades early */
+@keyframes shoot {
+  0% {
+    /* Start far off-screen right - ONLY translateX */
+    transform: translateX(0); 
+    opacity: 0;
+  }
+  10% {
+     /* Fade in */
+    opacity: 1;
+  }
+  70% {
+    /* Still visible, starts fading */
+    opacity: 1;
+  }
+  90% {
+    /* Fully faded before reaching end */
+    opacity: 0;
+  }
+  100% {
+     /* End far off-screen left, already faded out - ONLY translateX */
+    transform: translateX(-150vw); 
+    opacity: 0;
+  }
+}
+
+/* Dark Mode Shooting Stars */
+@media (prefers-color-scheme: dark) {
+  .comet {
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.5);
+  }
+  .comet::after {
+     background: linear-gradient(to right, rgba(255, 255, 255, 0.4), transparent);
+  }
+}
+
+/* Frosted Glass Area (Implicitly defined by content + backdrop-filter) */
+/* Apply this class to your main content container/wrapper */
+.content-wrapper-frosted {
+  background: rgba(28, 28, 30, 0.65);
+  backdrop-filter: blur(15px) saturate(180%);
+  -webkit-backdrop-filter: blur(15px) saturate(180%);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+  position: relative; /* Ensure it creates a stacking context */
+  z-index: 10; /* Above background elements */
+}
+
+@media (prefers-color-scheme: dark) {
+  .content-wrapper-frosted {
+    background: rgba(28, 28, 30, 0.65); /* Dark mode frosted */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* General Styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* Responsive adjustments (Optional: Add if needed) */
+@media (max-width: 768px) {
+  .blur-element {
+    filter: blur(60px); /* Less blur on smaller screens */
+  }
+}
   
-  body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow-x: hidden;
-  }
-  
-  .section {
-    position: relative;
-    height: 100vh; 
-    z-index: 1;
-  }
-  
-  .section:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 200%; 
-    background-color: transparent;
-    z-index: -1;
-  }
   

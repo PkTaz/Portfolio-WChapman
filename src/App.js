@@ -1,49 +1,82 @@
 import "./App.css";
-import React, { useState } from "react";
-import ParticlesBackground from "./components/ParticlesBackground.js";
+import React, { useState, useEffect } from "react";
+import A24Background from "./components/ParticlesBackground.js";
 import Header from "./components/Header.js";
-import IntroCard from "./components/IntroCard.js";
-import FixedSection from "./components/FixedSection.js";
+import MobileHeader from "./components/MobileHeader.js";
+import BentoBox from "./components/BentoBox.js";
 import Skills from "./components/Skills.js";
 import ProjectTimeline from "./components/ProjectTimeline.js";
 import About from "./components/About.js";
 import Resume from "./components/Resume.js";
-
-const pages = ["home", "skills", "resume", "about", "projects"];
+import Journal from "./components/Journal.js";
+import IntroCard from "./components/IntroCard.js";
+import LoadingScreen from "./components/LoadingScreen.js";
 
 const App = () => {
-  const [currentPage, setCurrentPage] = useState(0);
-
-  const nextPage = () => {
-    setCurrentPage((prevPage) => (prevPage + 1) % pages.length);
-  };
+  const [currentPage, setCurrentPage] = useState("home");
+  const [isLoading, setIsLoading] = useState(true);
+  const [isFading, setIsFading] = useState(false);
+  
+  useEffect(() => {
+    const loadTimer = setTimeout(() => {
+      setIsFading(true);
+      
+      const fadeTimer = setTimeout(() => {
+        setIsLoading(false);
+      }, 500);
+      
+      return () => clearTimeout(fadeTimer);
+    }, 2500);
+    
+    return () => clearTimeout(loadTimer);
+  }, []);
+  
+  useEffect(() => {
+    if (isLoading) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [currentPage, isLoading]);
 
   const handleNavClick = (pageName) => {
-    const pageIndex = pages.indexOf(pageName);
-    if (pageIndex !== -1) {
-      setCurrentPage(pageIndex);
-      console.log("Current Page:", pageName);  // Log to check the current page
-    }
+    setCurrentPage(pageName);
+    console.log("Current Page:", pageName);
   };
 
   return (
     <div className="App">
-      <ParticlesBackground />
-      <FixedSection />
-      <Header currentPage={pages[currentPage]} onNavClick={handleNavClick} />
-      {currentPage === 0 && (
-        <div className="mobile-image-container">
-          <img className="mobile-image" src={`${process.env.PUBLIC_URL}/assets/profilep.jpeg`} alt="mobile-image" />
-        </div>
+      {isLoading && <LoadingScreen isFading={isFading} />}
+      
+      {!isLoading && (
+        <>
+          <A24Background />
+          
+          <Header currentPage={currentPage} onNavClick={handleNavClick} />
+          <MobileHeader currentPage={currentPage} onNavClick={handleNavClick} />
+          
+          {currentPage === "home" && (
+            <div className="home-container home-app-layout">
+              <IntroCard />
+              <BentoBox onNavClick={handleNavClick} />
+            </div>
+          )}
+          
+          <div className="content-container">
+            {currentPage === "skills" && <Skills />}
+            {currentPage === "resume" && <Resume />}
+            {currentPage === "about" && <About />}
+            {currentPage === "projects" && <ProjectTimeline />}
+            {currentPage === "journal" && <Journal />}
+          </div>
+          
+          <div className="a24-attribution">Design Inspired by A24 Films</div>
+        </>
       )}
-
-      {currentPage === 0 && <IntroCard />}  {/* Show IntroCard on homepage */}
-      {currentPage === 1 && <Skills />}
-      {currentPage === 2 && <Resume />} 
-      {currentPage === 3 && <About />}
-      {currentPage === 4 && <ProjectTimeline />}
-  
-      <button className="next-button" onClick={nextPage}>➝</button>
     </div>
   );
 };

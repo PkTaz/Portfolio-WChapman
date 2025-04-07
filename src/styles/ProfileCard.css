@@ -1,0 +1,165 @@
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  padding: 2.5rem;
+  background-color: #121212;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  border: 1px solid rgba(0, 255, 74, 0.7);
+  box-shadow: 0 0 20px rgba(0, 255, 74, 0.4);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  max-width: 1200px;
+  width: 90%;
+}
+
+.profile-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 10% 10%, rgba(0, 255, 74, 0.15), transparent 40%);
+  z-index: -1;
+}
+
+.profile-image-container {
+  flex-shrink: 0;
+}
+
+.profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #00ff4a;
+  box-shadow: 0 0 15px rgba(0, 255, 74, 0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(0, 255, 74, 0.8);
+}
+
+.profile-content {
+  flex: 1;
+}
+
+.profile-header {
+  margin-bottom: 1rem;
+}
+
+.profile-name {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(0, 255, 74, 0.4);
+}
+
+.profile-details {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.profile-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0;
+  color: #cccccc;
+  display: inline-block;
+  position: relative;
+}
+
+.profile-title::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #00ff4a;
+  box-shadow: 0 0 8px rgba(0, 255, 74, 0.8);
+}
+
+.profile-location {
+  font-size: 1.1rem;
+  color: #969494;
+  margin: 0;
+}
+
+.profile-bio {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #e0e0e0;
+  margin-bottom: 1.5rem;
+  max-width: 800px;
+}
+
+.profile-socials {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.social-link {
+  transition: transform 0.3s ease;
+}
+
+.social-link:hover {
+  transform: translateY(-5px);
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.social-icon-gh {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+@media (max-width: 900px) {
+  .profile-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .profile-details {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .profile-socials {
+    justify-content: center;
+  }
+  
+  .profile-bio {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-name {
+    font-size: 2rem;
+  }
+  
+  .profile-title {
+    font-size: 1.2rem;
+  }
+  
+  .profile-bio {
+    font-size: 1rem;
+  }
+} 
